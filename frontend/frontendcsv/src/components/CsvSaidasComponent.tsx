@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { CsvSaida } from "../Types/csvs";
 import { BASE_URL } from "../Utils/requests";
 
@@ -11,7 +12,6 @@ function CsvSaidasComponent() {
 
     useEffect(() => {
         axios.get(`${BASE_URL}/csv/saida`).then((response) => {
-            console.log(response.data)
             setCsvEntrada(response.data)
         }
         );
@@ -19,6 +19,7 @@ function CsvSaidasComponent() {
 
     return (
         <Container>
+            <h2>Csv dos Resultado das atualizações</h2>
             <Table>
                 <thead>
                     <tr>
@@ -31,7 +32,7 @@ function CsvSaidasComponent() {
                 </thead>
                 <tbody>
                     {csvEntrada?.map(csvE => (
-                        <tr>
+                        <tr >
                             <td>{csvE.agencia}</td>
                             <td>{csvE.conta}</td>
                             <td>{csvE.saldo}</td>
@@ -41,6 +42,7 @@ function CsvSaidasComponent() {
                     ))}
                 </tbody>
             </Table>
+            <Link  className="buttonEntrada" to={'/'}> <Button>Voltar</Button></Link>
         </Container>
 
     );

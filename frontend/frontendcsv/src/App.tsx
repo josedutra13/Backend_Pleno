@@ -1,22 +1,25 @@
 import React from 'react';
-import {  Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import CsvEntradasComponent from './components/CsvEntradasComponent';
 import CsvSaidasComponent from './components/CsvSaidasComponent';
 
 
- 
+
 function App() {
   return (
-    <>
-    <Container>
-    <h2>Csv de Entrada</h2>
-    <CsvEntradasComponent></CsvEntradasComponent> 
-    <h2>Csv de Saída com resultados da atualização</h2>
-    <CsvSaidasComponent></CsvSaidasComponent>
-    </Container>
-    
-    </>
-     
+    <BrowserRouter>
+      <Container>
+
+        <Routes>
+        <Route path='/' element={<CsvEntradasComponent />}></Route>
+          <Route path='csv/saida' element={<CsvSaidasComponent />}></Route>
+        </Routes>
+      </Container>
+    </BrowserRouter>
+
+
+
   );
 }
 
